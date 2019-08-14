@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
 const api = axios.create({
-    baseURL: 'https://help-canta-sys-backend.herokuapp.com/api'
+  baseURL: process.env.BASE_URL
 });
 
 export default api;
