@@ -12,13 +12,18 @@ class Home extends Component {
   handleSubmit = async e => {
     e.preventDefault();
 
-    const data = new FormData();
-    data.append("nomeLivro", this.state.nomeLivro);
-    data.append("autorLivro", this.state.autorLivro);
-    data.append("sinopseLivro", this.state.sinopseLivro);
-    await api.post("livros", data);
-    alert("Cadastro enviado.");
-    this.setState({ nomeLivro: "", autorLivro: "", sinopseLivro: "" });
+    if (this.state.nomeLivro == "" || this.state.sinopseLivro == "") {
+      alert("Preencha os campos!");
+    } else {
+      const data = {
+        nomeLivro: this.state.nomeLivro,
+        autorLivro: this.state.autorLivro,
+        sinopseLivro: this.state.sinopseLivro
+      };
+      await api.post("livros", data);
+      alert("Cadastro enviado.");
+      this.setState({ nomeLivro: "", autorLivro: "", sinopseLivro: "" });
+    }
   };
 
   handleChange = e => {
